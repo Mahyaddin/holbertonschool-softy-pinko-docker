@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Full Stack with Proxy</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        #api-data { color: blue; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Front-end is working via Proxy!</h1>
+    <p>This request is being routed through Nginx.</p>
+    
+    <div id="api-data">Waiting for Back-end response...</div>
+
+    <script>
+        fetch('/api')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('api-data').innerText = "Back-end says: " + data;
+            })
+            .catch(error => {
+                document.getElementById('api-data').innerText = "Error: Cannot connect to Proxy/API.";
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>
