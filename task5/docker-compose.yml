@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api-server:
+    build: ./back-end
+
+  web-server:
+    build: ./front-end
+
+  proxy-server:
+    build: ./proxy
+    ports:
+      - "80:80"
+    depends_on:
+      - api-server
+      - web-server
